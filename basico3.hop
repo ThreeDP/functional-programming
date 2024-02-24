@@ -1,0 +1,5 @@
+dec adicao : num # num -> num;
+--- adicao (0, y) <= y;
+--- adicao (x, 0) <= x;
+--- adicao (0, 0) <= 9999;
+--- adicao (x, y) <= x + y;

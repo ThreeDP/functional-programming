@@ -1,0 +1,34 @@
+uses basico;
+dec soma_com_10 : num -> num;
+dec subtrai_2 : num -> num;
+dec x_pi_em_e : num -> num;
+dec c2f : num -> num;
+dec divide : num # num -> num;
+dec media2 : num # num -> num;
+dec euro : num # num -> num;
+dec quad_soma : num # num -> num;
+dec troca : num # num -> num # num;
+dec parc : num # num -> num # num;
+dec dividir : num # num -> num # num;
+
+--- soma_com_10 x <= x + 10;
+
+--- subtrai_2 x <= x - 2;
+
+--- x_pi_em_e x <= x * x_pi / 5;
+
+--- c2f c <= c * 9 / 5 + 32;
+
+--- divide (x, y) <= x / y;
+
+--- media2 (x, y) <= (x + y) / 2;
+
+--- euro (r, v) <= r / v;
+
+--- quad_soma (a, b) <= pow (a + b, 2);
+
+--- troca (a, b) <= (b, a);
+
+--- parc (a, b) <= (a, b);
+
+--- dividir (a, b) <= (a div b, a mod b);
