@@ -1,0 +1,60 @@
+use fluxo;
+
+dec negativo : num -> num;
+--- negativo 0 <= 0;
+--- negativo n <= if n < 0
+                then n
+                else 0 - n;
+
+dec classif : (num # num) -> (num # num);
+--- classif (n1, n2) <= if n1 > n2
+                    then (n2, n1)
+                    else (n1, n2);
+
+dec div84 : num -> truval;
+--- div84 n <= if n mod 8 = 4
+                then true
+                else false;
+
+dec extenso : num -> list char;
+--- extenso 0 <= "zero";
+--- extenso 1 <= "um";
+--- extenso 2 <= "dois";
+--- extenso 3 <= "tres";
+--- extenso 4 <= "quatro";
+--- extenso 5 <= "cinco";
+--- extenso 6 <= "seis";
+--- extenso 7 <= "sete";
+--- extenso 8 <= "oito";
+--- extenso 9 <= "nove";
+--- extenso _ <= "valor invalido";
+
+dec calculadora : num # num # num -> num;
+--- calculadora (x, y, 00) <= x + y;
+--- calculadora (x, y, 01) <= x - y;
+--- calculadora (x, y, 10) <= x * y;
+--- calculadora (x, y, 11) <= x / y;
+--- calculadora (x, y, _) <= error ("entrou errado");
+
+# função lambda
+# variáveis livres 
+# variáveis ligadas.
+(\x => x + y) 9;
+(lambda x => x * 2) 9;
+(\(x, y) => x + y) (1, 9);
+(lambda(x, y) => x + y) (1, 9);
+(\x => \y => x + y) 1 9;
+(lambda x => lambda y => x + y) 1 9;
+
+dec test : num -> num;
+--- test (n1) <= (\x => x + n1) 9;
+
+# function: (lambda(a, b) => (a + b) / 2);
+# use: (lambda(a, b) => (a + b) / 2) (5, 5);
+
+# function: (\a => \b => pow ((a + b), 2) );
+# use: (\a => \b => pow ((a + b), 2) ) 10 10;
+
+(\(p,a) => pow(p / a, 2)) (90, 1.80);
+
+(\x => x * 32) 2;
