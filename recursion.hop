@@ -1,0 +1,45 @@
+
+use basico3
+
+dec fat1 : num -> num;
+--- fat1 0 <= 1;
+--- fat1 n <= n * fat1(n - 1);
+
+dec fib1 : num -> num;
+--- fib1 0 <= 0;
+--- fib1 1 <= 1;
+--- fib1 n <= fib1(n - 1) + fib1(n -2);
+
+dec potencia : num # num -> num;
+--- potencia (n, 0) <= 1;
+--- potencia (b, e) <= b * potencia(b, e - 1);
+
+dec prodInterval1 : num # num -> num;
+--- prodInterval1 (m, n) <= 
+    if m > n
+    then 1
+    else m * prodInterval1(m + 1, n);
+
+dec somaInterval1 : num # num -> num;
+--- somaInterval1 (m, n) <=
+        if m > n
+        then 0
+        else m + somaInterval1(m + 1, n);
+
+dec resto : num # num -> num;
+--- resto (p, q) <= 
+        if p < q
+        then return p
+        else resto(p - q, q);
+
+dec somaCubos : num -> num;
+--- somaCubos 0 <= 0;
+--- somaCubos n <= pow(n, 3) + somaCubos(n - 1);
+
+dec contaPares : num -> num;
+--- contaPares 0 <= 1;
+--- contaPares 1 <= 1;
+--- contaPares n <=
+        if n mod 2 = 0
+        then 1 + contaPares(n - 1)
+        else 0 + contaPares(n - 1);
