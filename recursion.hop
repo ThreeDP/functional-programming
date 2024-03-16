@@ -43,3 +43,76 @@ dec contaPares : num -> num;
         if n mod 2 = 0
         then 1 + contaPares(n - 1)
         else 0 + contaPares(n - 1);
+
+dec somaDigitos : num -> num;
+--- somaDigitos 0 <= 0;
+--- somaDigitos n <= n mod 10 + somaDigitos(n div 10);
+
+dec somaDigitos' : num -> num;
+--- somaDigitos' n <=
+        if n = 0
+        then 0
+        else n mod 10 + somaDigitos(n div 10);
+
+dec primeiroDigito : num -> num;
+--- primeiroDigito n <=
+        if n < 10
+        then n
+        else primeiroDigito(n div 10);
+
+dec zeros : num -> num;
+--- zeros 0 <= 0;
+--- zeros n <=
+        if n mod 10 = 0
+        then 1 + zeros(n div 10)
+        else 0 + zeros(n div 10);
+
+dec somaQuadrados : num -> num;
+--- somaQuadrados 0 <= 0;
+--- somaQuadrados 1 <= 1;
+--- somaQuadrados n <= pow(n, 2) + somaQuadrados(n - 1); 
+
+dec ehPotenciaDeDois : num -> truval;
+--- ehPotenciaDeDois 0 <= false;
+--- ehPotenciaDeDois 1 <= true;
+--- ehPotenciaDeDois n <=
+        if n = 2
+        then true
+        else ehPotenciaDeDois(n / 2);
+
+dec mediaDigitosAux : num # num -> num # num;
+--- mediaDigitosAux (0, 1) <= (0, 1);
+--- mediaDigitosAux (n, m) <= (n, m) + mediaDigitosAux(n - 1, 1);
+
+dec mediaDigitos : num -> num;
+--- mediaDigitos 0 <= 0;
+--- mediaDigitos 1 <= 1;
+--- mediaDigitos n <= v div d (v, d) mediaDigitosAux(n, 1);
+
+dec collatz : num -> num;
+--- collatz 0 <= 0;
+--- collatz 1 <= 1;
+--- collatz n <=
+        if abs n mod 2 = 0
+        then 1 + collatz (abs n div 2)
+        else 1 + collatz (abs n * 3 + 1);
+
+dec calc : num -> num;
+--- calc 0 <= 0;
+--- calc n <= (1.5 + calc(n -1)) / 2;
+
+dec exp : num # num -> num;
+--- exp (x, 0) <= 1;
+--- exp (x, n) <= x * exp(x, n-1);
+
+dec somaFaixa : num # num -> num;
+--- somaFaixa (m, n) <= 
+        if n < m
+        then 0
+        else if m = n
+        then m
+        else m + somaFaixa(m + 1, n);
+
+dec dec2bin : num -> num;
+--- dec2bin 0 <= 0;
+--- dec2bin n <= 10 * dec2bin(n div 2) + n mod 2; 
