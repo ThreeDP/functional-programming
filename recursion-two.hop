@@ -1,0 +1,68 @@
+use recursion
+
+dec ftbase : num # num -> num;
+--- ftbase (0, x) <= x;
+--- ftbase (n, x) <= ftbase (n - 1, n * x);
+
+dec fat2 : num -> num;
+--- fat2 n <= ftbase (n, 1);
+
+dec fbs : num # num # num -> num;
+--- fbs (0, anterior, actual) <= anterior;
+--- fbs (1, anterior, actual) <= actual;
+--- fbs (2, anterior, actual) <= actual + anterior;
+--- fbs (n, anterior, actual) <= fbs(n - 1, actual, anterior + actual);
+
+dec fib2 : num -> num;
+--- fib2 (n) <= fbs (n, 0, 1);
+
+dec par : num -> truval;
+--- par 0 <= true;
+--- par n <= not (par (n - 1));
+
+dec base2x : num # num -> num;
+--- base2x (0, p) <= p;
+--- base2x (n, p) <= base2x(n - 1, p * 2);
+
+dec base2_2 : num -> num;
+--- base2_2 (n) <= base2x(n, 1);
+
+
+dec qvbase : num # num # num -> num;
+--- qvbase (k, n, i) <= if n = 0
+                        else i
+                        else    if n mod 10 = k
+                                then qvbase(k, n div 10, i + 1)
+                                else qvbase(k, n div 10, i);
+
+dec quantasVezes : num # num -> num;
+--- quantasVezes (k, n) <= qvbase(k, n, 0);
+
+dec duplo_fat2_base : num # num -> num;
+--- duplo_fat2_base (n, f) <= if n > 0
+                            then duplo_fat2_base(n - 2, n * f)
+                            else f;
+
+dec duplo_fat2 : num -> num;
+--- duplo_fat2 n <= duplo_fat2_base(n, 1);
+
+dec prod_inter_base : num # num # num -> num;
+--- prod_inter_base (m, n, p) <=
+                            if m =< n
+                            then prod_inter_base(m + 1, n, m * p)
+                            else p;
+
+dec prodInterval2 : num # num -> num;
+--- prodInterval2 (m, n) <= prod_inter_base(m, n, 1);
+
+dec mdc2 : num # num -> num;
+--- mdc2 (a, 0) <= a;
+--- mdc2 (a, b) <= mdc2(b, a mod b);
+
+dec exp_base : num # num # num -> num;
+--- exp_base (x, 0, r) <= r;
+--- exp_base (x, n, r) <= exp_base(x, n - 1, x * r);
+
+dec exp : num # num -> num;
+--- exp (x, n) <= exp_base(x, n, 1);
+
