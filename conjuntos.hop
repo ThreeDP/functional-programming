@@ -36,3 +36,20 @@ dec elempnt : list num -> num;
 --- elempnt (x :: xs) <= if tamanho xs = 1
                         then x
                         else elempnt xs;
+
+dec somalst : list num -> num;
+--- somalst [] <= 0;
+--- somalst (x :: xs) <= x + somalst(xs);
+
+dec intervalo : num # num -> list num;
+--- intervalo (n1, n2) <= if n1 =< n2
+                        then n1 :: intervalo((n1 + 1), n2)
+                        else [];
+
+dec inverte : list num -> list num;
+--- inverte [] <= [];
+--- inverte (x :: xs) <= inverte xs <> [x];
+
+dec inverte` : list num -> list num;
+--- inverte` [] <= [];
+--- inverte` xs <= ultimo xs :: inverte` (arranjo xs);
