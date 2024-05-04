@@ -1,3 +1,5 @@
+module Basics where
+
 -- Operators ---------------------------
 
 plus :: (Num n) => n -> n -> n
@@ -70,6 +72,13 @@ ftFibonacciAux num before current = ftFibonacciAux (num - 1) current (before + c
 
 ftFibonacci :: (Integral n) => n -> n
 ftFibonacci num = ftFibonacciAux num 0 1
+
+ftFatBase :: (Integral a) => a -> a -> a
+ftFatBase 0 x = x
+ftFatBase n x = ftFatBase (n - 1) (n * x)
+
+ftFat :: (Integral a) => a -> a
+ftFat n = ftFatBase n 1
 -----------------------------------------------------------------
 -- Lambda ------------------------------
 

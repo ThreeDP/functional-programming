@@ -1,4 +1,5 @@
 import Data.List (partition)
+import Basics
 
 assertEqual :: Eq a => a -> a -> IO ()
 assertEqual a b = if a == b then putStr "." else putStr "X"
@@ -36,7 +37,24 @@ main = do
   assertEqualLst (binary 0) [0]
   assertEqualLst (binary 3) [1, 1]
   putStrLn $ "\n"
-                   
+
+-- testftFatLst
+  putStrLn $ "Test Fatorial of a list"
+  assertEqualLst (ftFatLst [1, 2, 3, 4, 5]) [1, 2, 6, 24, 120]
+  assertEqualLst (ftFatLst []) []
+  assertEqualLst (ftFatLst [0]) [1]
+  putStrLn $ "\n"
+
+-- testListEvens
+  putStrLn $ "Test List Evens - return only the even numbers of a list"
+  assertEqualLst (ftLstEvens [1, 2, 3, 4, 5, 6, 27]) [2, 4, 6]
+  assertEqualLst (ftLstEvens []) []
+  assertEqualLst (ftLstEvens [0, 1]) [0]
+  assertEqualLst (ftLstEvens [1]) []
+  putStrLn $ "\n"
+
+
+-- Functions 
 containsFirstLst :: (Ord a, Num a) => [a] -> [a] -> Bool
 containsFirstLst _ [] = False
 containsFirstLst [] _ = True
@@ -53,6 +71,16 @@ lstOddsPos :: (Ord a, Num a) => [a] -> [a]
 lstOddsPos [] = []
 lstOddsPos [x] = []
 lstOddsPos (even:odd:xs) = odd : lstOddsPos xs
+
+ftFatLst :: (Integral a, Eq a) => [a] -> [a]
+ftFatLst [] = []
+ftFatLst (x:xs) = ftFat x : ftFatLst xs
+
+ftLstEvens :: (Integral a, Ord a) => [a] -> [a]
+ftLstEvens [] = []
+ftLstEvens (x:xs) =  if x `mod` 2 == 0
+                    then x : ftLstEvens xs
+                    else ftLstEvens xs
 
 sufix :: (Ord a, Num a) => [a] -> [[a]]
 sufix [] = [[]]
