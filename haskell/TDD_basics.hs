@@ -53,6 +53,29 @@ main = do
   assertEqualLst (ftLstEvens [1]) []
   putStrLn $ "\n"
 
+-- testInterleaveList
+  putStrLn $ "Test interleave a list"
+  assertEqualLst (ftInterleave [1, 2] [3, 4]) [1, 3, 2, 4]
+  assertEqualLst (ftInterleave [] []) []
+  assertEqualLst (ftInterleave [1] []) [1]
+  assertEqualLst (ftInterleave [] [1]) [1]
+  putStrLn $ "\n"
+
+-- testFindEven
+  putStrLn $ "Test find even and return true if has at least one even number"
+  assertEqual (ftFindEven [1, 2, 3, 4, 5]) True
+  assertEqual (ftFindEven []) False
+  assertEqual (ftFindEven [1, 3, 5, 7, 9]) False
+  assertEqual (ftFindEven [1, 2, 3]) True
+  putStrLn $ "\n"
+
+-- testOnlyOdds
+  putStrLn $ "Test if the list has only odds numbers"
+  assertEqual (ftOnlyOdds [1, 2, 3, 4, 5]) False
+  assertEqual (ftOnlyOdds []) False
+  assertEqual (ftOnlyOdds [1, 3, 5, 7, 9]) True
+  assertEqual (ftOnlyOdds [1, 2, 3]) False
+  putStrLn $ "\n"
 
 -- Functions 
 containsFirstLst :: (Ord a, Num a) => [a] -> [a] -> Bool
@@ -81,6 +104,25 @@ ftLstEvens [] = []
 ftLstEvens (x:xs) =  if x `mod` 2 == 0
                     then x : ftLstEvens xs
                     else ftLstEvens xs
+
+ftInterleave :: (Ord a, Eq a, Num a) => [a] -> [a] -> [a]
+ftInterleave [] [] = []
+ftInterleave xs [] = xs
+ftInterleave [] ys = ys
+ftInterleave (x:xs) (y:ys) = x : y : ftInterleave xs ys
+
+ftFindEven :: (Integral a, Eq a, Num a) => [a] -> Bool
+ftFindEven [] = False
+ftFindEven (x:xs) = if x `mod` 2 == 0
+                  then True
+                  else ftFindEven xs
+
+ftOnlyOdds :: (Integral a, Eq a, Num a) => [a] -> Bool
+ftOnlyOdds [] = False
+ftOnlyOdds [x] = if x `mod` 2 /= 0 then True else False
+ftOnlyOdds (x:xs) = if x `mod` 2 /= 0
+                    then ftOnlyOdds xs
+                    else False
 
 sufix :: (Ord a, Num a) => [a] -> [[a]]
 sufix [] = [[]]
