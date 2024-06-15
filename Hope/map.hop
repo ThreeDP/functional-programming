@@ -1,0 +1,40 @@
+dec filtro : list num # (num -> truval) -> list num;
+--- filtro ([], f) <= [];
+--- filtro (x :: xs, f) <=  if f x
+                            then x :: filtro (xs, f)
+                            else filtro (xs, f);
+
+dec reducao : list num # (num # num -> num) # num -> num;
+--- reducao ([], f, n) <= n;
+--- reducao (x :: xs, f, n)  <= f (x, reducao(xs, f, n));
+
+dec soma : num # num -> num;
+--- soma (n1, n2) <= n1 + n2;
+
+dec mul : num # num -> num;
+--- mul (n1, n2) <= n1 * n2;
+
+dec compacta : list num # list num -> list (num # num);
+--- compacta([], b)         <= [];
+--- compacta(a, [])         <= [];
+--- compacta( x :: xs, y :: ys) <= (x, y) :: compacta (xs, ys);
+
+dec oposto : list num -> list num;
+--- oposto []               <= [];
+--- oposto (x :: xs)        <= oposto xs <> [x];
+
+dec dcp_base : list num # list num # list (num # num) -> (list num # list num);
+--- dcp_base (xs, ys, [])           <= (oposto xs, oposto ys);
+--- dcp_base (xs, ys, (x, y) :: zs) <= dcp_base (x :: xs, y :: ys, zs);
+
+dec descompacta : list (num # num) -> list num # list num;
+--- descompacta [] <= ([], []);
+--- descompacta xs <= dcp_base ([], [], xs);
+
+dec somalst : list num -> num;
+--- somalst ([]) <= 0;
+--- somalst (x :: xs) <= x + soma xs;
+
+dec abundante : num -> truval;
+--- abundante n <=
+    somalst ( comp ( faiza))
